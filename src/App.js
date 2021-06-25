@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from 'react';
+import { Route, Switch } from "react-router-dom";
+import HeadlinePage from './pages/headlinePage';
+import NavbarComp from './components/NavbarComp'
+import SearchedPage from './pages/searchedPage';
+import LoginPage from './pages/loginPage';
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {  }
+  }
+  render() { 
+    return (
+      <>
+      <NavbarComp />
+      <Switch>
+        <Route path="/" component={HeadlinePage} exact/>
+        <Route path="/kategori-page" component={HeadlinePage}/>
+        <Route path="/search" component={SearchedPage}/>
+        <Route path="/login" component={LoginPage}/>
+      </Switch>
+      </>
+    );
+  }
 }
-
+ 
 export default App;
