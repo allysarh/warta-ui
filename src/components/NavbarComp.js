@@ -24,9 +24,11 @@ class NavbarComp extends React.Component {
         ]
     }
     redirect = (input) =>{
-        this.setState({redirect: input})
+        this.setState({redirect: input}, console.log(this.state.redirect))
+        return <Redirect to="/login" />
     }
     render() {
+        console.log("2", this.state.redirect)
         if(this.state.redirect === "login"){
             return <Redirect to="/login" />
         } else if (this.state.redirect === "register"){
@@ -40,11 +42,10 @@ class NavbarComp extends React.Component {
                         <i className="pi pi-twitter mx-2"></i>
                         <i className="pi pi-youtube mx-2"></i>
                     </div>
-                    <div style={{ justifyContent: 'center', width: '100%' }}>
-                        <h2 style={{ textAlign: 'center' }}>Warta<span style={{ color: 'grey' }}>Com</span></h2>
-                    </div>
+                    <Link style={{ justifyContent: 'center', width: '100%', textDecoration: 'none', color: 'black' }} to="/">
+                        <h2 style={{ textAlign: 'center' }}>Warta.<span style={{ color: 'grey' }}>com</span></h2>
+                    </Link>
                     <div style={{ width: '40%' }}>
-                        
                         <Menubar
                             model={this.items}
                             end={

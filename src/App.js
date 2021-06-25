@@ -4,24 +4,31 @@ import HeadlinePage from './pages/headlinePage';
 import NavbarComp from './components/NavbarComp'
 import SearchedPage from './pages/searchedPage';
 import LoginPage from './pages/loginPage';
+import { connect } from 'react-redux';
+import { getNewsAction } from './action';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = {}
   }
-  render() { 
+
+  componentDidMount() {
+    this.props.getNewsAction()
+  }
+  render() {
     return (
       <>
-      <NavbarComp />
-      <Switch>
-        <Route path="/" component={HeadlinePage} exact/>
-        <Route path="/kategori-page" component={HeadlinePage}/>
-        <Route path="/search" component={SearchedPage}/>
-        <Route path="/login" component={LoginPage}/>
-      </Switch>
+        <NavbarComp />
+        <Switch>
+          <Route path="/" component={HeadlinePage} exact />
+          <Route path="/kategori-page" component={HeadlinePage} />
+          <Route path="/search" component={SearchedPage} />
+          <Route path="/login" component={LoginPage} />
+        </Switch>
       </>
     );
   }
 }
- 
-export default App;
+
+
+export default connect(null, {getNewsAction})(App);
