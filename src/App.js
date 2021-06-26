@@ -6,6 +6,7 @@ import SearchedPage from './pages/searchedPage';
 import LoginPage from './pages/loginPage';
 import { connect } from 'react-redux';
 import { getNewsAction } from './action';
+import CategoryPage from './pages/categoryPage';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,14 +22,20 @@ class App extends React.Component {
         <NavbarComp />
         <Switch>
           <Route path="/" component={HeadlinePage} exact />
-          <Route path="/kategori-page" component={HeadlinePage} />
           <Route path="/search" component={SearchedPage} />
           <Route path="/login" component={LoginPage} />
+          <Route path={`/kategori`} component={CategoryPage} />
         </Switch>
       </>
     );
   }
 }
 
+const mapStateToProps = ({NewsReducer}) =>{
+  return {
+      news: NewsReducer.news_list,
+      kategori: NewsReducer.kategori
+  }
+}
 
-export default connect(null, {getNewsAction})(App);
+export default connect(mapStateToProps, {getNewsAction})(App);

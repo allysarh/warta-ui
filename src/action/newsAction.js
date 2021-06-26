@@ -1,5 +1,5 @@
 import axios from "axios"
-import { GET_NEWS, URL_API } from "../helper"
+import { ACTIVE_INDEX, GET_KATEGORI, GET_NEWS, NEWS_BY_CAT, URL_API } from "../helper"
 
 export const getNewsAction = () =>{
     return async (dispacth) =>{
@@ -9,6 +9,21 @@ export const getNewsAction = () =>{
             dispacth({
                 type: GET_NEWS,
                 payload: getAllNews.data
+            })
+        } catch (error) {
+            console.log("error get news action", error)
+        }
+    }
+}
+
+export const getNewsByCat = (kategori) =>{
+    return async (dispacth) =>{
+        try {
+            let getNewsKategori = await axios.get(URL_API + `/news/get-news?kategori=${kategori}`)
+            // console.log("news action k", getNewsKategori.data)
+            dispacth({
+                type: NEWS_BY_CAT,
+                payload: getNewsKategori.data
             })
         } catch (error) {
             console.log("error get news action", error)

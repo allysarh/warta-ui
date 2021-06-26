@@ -3,7 +3,7 @@ import { Menubar } from 'primereact/menubar';
 import { InputText } from 'primereact/inputtext'
 import { TabMenu } from 'primereact/tabmenu';
 import { Button } from 'primereact/button';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 
 class NavbarComp extends React.Component {
     constructor(props) {
@@ -17,8 +17,8 @@ class NavbarComp extends React.Component {
             {
                 label: 'Account',
                 items: [
-                    { label: 'Login', icon: 'pi pi-fw pi-user', command: () => this.redirect("login") },
-                    { label: 'Register', icon: 'pi pi-fw pi-id-card', command: () => { this.redirect("register") } }
+                    { label: 'Login', icon: 'pi pi-fw pi-user', command: () => this.props.history.push('/login') },
+                    { label: 'Register', icon: 'pi pi-fw pi-id-card', command: () => this.props.history.push('/register') }
                 ]
             }
         ]
@@ -28,12 +28,6 @@ class NavbarComp extends React.Component {
         return <Redirect to="/login" />
     }
     render() {
-        console.log("2", this.state.redirect)
-        if(this.state.redirect === "login"){
-            return <Redirect to="/login" />
-        } else if (this.state.redirect === "register"){
-            return <Redirect to="/register" />
-        }
         return (
             <div>
                 <div style={{ height: '12vh', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', borderBottom: '1px solid #efefef' }}>
@@ -63,4 +57,4 @@ class NavbarComp extends React.Component {
     }
 }
 
-export default NavbarComp;
+export default withRouter(NavbarComp);
