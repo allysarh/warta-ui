@@ -7,6 +7,7 @@ import LoginPage from './pages/loginPage';
 import { connect } from 'react-redux';
 import { getNewsAction } from './action';
 import CategoryPage from './pages/categoryPage';
+import DetailPage from './pages/detailPage';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +26,7 @@ class App extends React.Component {
           <Route path="/search" component={SearchedPage} />
           <Route path="/login" component={LoginPage} />
           <Route path={`/kategori`} component={CategoryPage} />
+          <Route path={`/detail-news`} component={DetailPage} />
         </Switch>
       </>
     );

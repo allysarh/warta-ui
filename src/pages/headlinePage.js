@@ -16,9 +16,9 @@ class HeadlinePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+
         }
-        
+
         this.menu = [
             { label: 'Home' },
             { label: 'Politik' },
@@ -59,7 +59,7 @@ class HeadlinePage extends React.Component {
         })
     }
 
-    
+
     render() {
         return (
             <div style={{ height: '100%', width: '100%' }} className="container-fluid">
@@ -73,7 +73,7 @@ class HeadlinePage extends React.Component {
 
             </div>
         );
-        
+
     }
 }
 

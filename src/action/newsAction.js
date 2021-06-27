@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ACTIVE_INDEX, GET_KATEGORI, GET_NEWS, NEWS_BY_CAT, URL_API } from "../helper"
+import { FILTERED, GET_NEWS, NEWS_BY_CAT, URL_API } from "../helper"
 
 export const getNewsAction = () =>{
     return async (dispacth) =>{
