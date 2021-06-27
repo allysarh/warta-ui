@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +11,28 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.p-password input {
+  width: 30rem;
+}
+.bg-img {
+  width: 100%;
+  height: 88vh;
+  display: block;
+  position: relative;
+}
+
+.bg-img::after {
+  background-image: url(https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iakrd_gRdPCg/v0/-1x-1.jpg);
+  width: 100%;
+  height: 88vh;
+  opacity: 0.5;
+  z-index: -1;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
 }
