@@ -1,8 +1,8 @@
 import axios from "axios"
-import { FILTERED, GET_NEWS, NEWS_BY_CAT, URL_API } from "../helper"
+import { GET_NEWS, NEWS_BY_CAT, URL_API } from "../helper"
 
-export const getNewsAction = () =>{
-    return async (dispacth) =>{
+export const getNewsAction = () => {
+    return async (dispacth) => {
         try {
             let getAllNews = await axios.get(URL_API + `/news/get-news`)
             // console.log("news action", getAllNews.data)
@@ -16,8 +16,8 @@ export const getNewsAction = () =>{
     }
 }
 
-export const getNewsByCat = (kategori) =>{
-    return async (dispacth) =>{
+export const getNewsByCat = (kategori) => {
+    return async (dispacth) => {
         try {
             let getNewsKategori = await axios.get(URL_API + `/news/get-news?kategori=${kategori}`)
             // console.log("news action k", getNewsKategori.data)
@@ -29,4 +29,30 @@ export const getNewsByCat = (kategori) =>{
             console.log("error get news action", error)
         }
     }
+}
+
+export const updateViewAction = (idnews, view) => {
+    return async (dispacth) => {
+        try {
+            view += 1
+            let res = await axios.patch(URL_API + `/news/update-view`, {
+                idnews, view: view
+            })
+            console.log(res.data)
+        } catch (error) {
+            console.log("error get news action", error)
+        }
+    }
+    // onClickCard = async () => {
+    //     try {
+    //         let { idnews, view } = this.props.data
+    //         view += 1
+    //         let res = await axios.patch(URL_API + `/news/update-view`, {
+    //             idnews, view: view
+    //         })
+    //         console.log(res.data)
+    //     } catch (error) {
+    //         console.log("error patch click card", error)
+    //     }
+    // }
 }

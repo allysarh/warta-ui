@@ -57,10 +57,10 @@ class DetailPage extends React.Component {
                 <img src={images} style={{ width: '80vw' }} />
                 <div className="my-3" style={{ width: '80vw' }}>
                     <div className="d-flex flex-column">
-                        <span style={{fontFamily: 'helvetica, arial', fontWeight: 'bold', fontSize: '15px', margin: '1%'}}>{author}</span>
+                        <span style={{fontFamily: 'helvetica, arial', fontWeight: 'bold', fontSize: '15px', margin: '1%'}}>Penulis: {author}</span>
                         <span style={{fontFamily: 'helvetica, arial', fontWeight: '500', fontSize: '13px', margin: '1%'}}>{this.state.tanggal}</span>
                     </div>
-                    <p style={{fontSize: '20px', fontFamily: 'georgia, times new roman', lineHeight: '30px', textAlign: 'justify'}}>
+                    <p className="my-3" style={{fontSize: '20px', fontFamily: 'georgia, times new roman', lineHeight: '30px', textAlign: 'justify'}}>
                         {`${deskripsi}`}
                         </p>
                 </div>

@@ -4,6 +4,8 @@ import { Button } from 'primereact/button';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { URL_API } from '../helper';
+import { connect } from 'react-redux';
+import { updateViewAction } from '../action'
 
 class CardComp extends React.Component {
     constructor(props) {
@@ -11,20 +13,8 @@ class CardComp extends React.Component {
         this.state = {}
     }
 
-    onClickCard = async () => {
-        try {
-            let { idnews, view } = this.props.data
-            view += 1
-            let res = await axios.patch(URL_API + `/news/update-view`, {
-                idnews, view: view
-            })
-            console.log(res.data)
-        } catch (error) {
-            console.log("error patch click card", error)
-        }
-    }
     render() {
-        let { idnews, judul, images, date } = this.props.data
+        let { idnews, judul, images, date, view } = this.props.data
         const header = (
             <img alt="Card"
                 src={images}
@@ -32,7 +22,7 @@ class CardComp extends React.Component {
                 onError={(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} />
         );
         return (
-            <Link to={`/detail-news?id=${idnews}`} style={{ textDecoration: 'none' }} onClick={this.onClickCard}>
+            <Link to={`/detail-news?id=${idnews}`} style={{ textDecoration: 'none' }} onClick={() => this.props.updateViewAction(idnews, view)}>
                 <Card title={judul} subTitle={`Tanggal: ${date.split("T")[0]}`} style={{ width: '25em', height: '25em', margin: '1%' }} header={header}>
                 </Card>
             </Link>
@@ -40,4 +30,4 @@ class CardComp extends React.Component {
     }
 }
 
-export default CardComp;
+export default connect(null, {updateViewAction})(CardComp);
