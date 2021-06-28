@@ -36,16 +36,22 @@ class SearchedPage extends React.Component {
         console.log("filter", filter)
     }
 
+    tanggal = (tanggal) => {
+        let bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November']
+        let output = tanggal.split('-')
+        return `${output[2]} ${bulan[1]} ${output[0]}`
+    }
 
     printSearch = () => {
         return this.state.queryNews.map((item, index) => {
+
             return (
                 <div className="d-flex align-items-center justify-content-around p-5" style={{ borderTop: '1px solid #cad1d6', borderBottom: '1px solid #cad1d6' }}
                 >
                     <div style={{ display: 'flex' }}>
-                        {item.date}
+                        {this.tanggal(item.date.split("T")[0])}
                     </div>
-                    <Link style={{ fontFamily: 'georgia, "times new roman', cursor: 'pointer', textDecoration: 'none', color: 'black' }} onClick={this.props.updateViewAction} to={`/detail-news?id=${item.idnews}`}>
+                    <Link style={{ fontFamily: 'georgia, "times new roman', cursor: 'pointer', textDecoration: 'none', color: 'black', width: '60%' }} onClick={this.props.updateViewAction} to={`/detail-news?id=${item.idnews}`}>
                         <p style={{ fontFamily: 'helvetica, arial', fontSize: '11px' }}>{item.kategori.toUpperCase()}</p>
                         <h4 style={{ fontSize: '23px' }}>{item.judul}</h4>
                         <p style={{ fontSize: '14px' }}>{item.deskripsi.substr(0, 100)} ...</p>
