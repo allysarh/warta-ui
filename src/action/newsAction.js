@@ -5,7 +5,7 @@ export const getNewsAction = () => {
     return async (dispacth) => {
         try {
             let getAllNews = await axios.get(URL_API + `/news/get-news`)
-            // console.log("news action", getAllNews.data)
+            console.log("news action", getAllNews.data)
             dispacth({
                 type: GET_NEWS,
                 payload: getAllNews.data

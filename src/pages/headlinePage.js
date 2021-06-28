@@ -58,6 +58,7 @@ class HeadlinePage extends React.Component {
 
 
     render() {
+        console.log(this.props.news)
         return (
             <div style={{ height: '100%', width: '100%' }} className="container-fluid">
                 <TabComp />
