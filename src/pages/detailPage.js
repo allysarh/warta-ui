@@ -30,7 +30,7 @@ class DetailPage extends React.Component {
         }
     }
 
-    tanggal = (tanggal) =>{
+    tanggal = (tanggal) => {
         let bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November']
         let output = tanggal.split('-')
         let printTanggal = `${output[2]} ${bulan[1]} ${output[0]}`
@@ -38,7 +38,9 @@ class DetailPage extends React.Component {
     }
     render() {
         let { images, judul, author, view, deskripsi, date, kategori } = this.state.detailNews
+        let halo = "halo \n a"
 
+        console.log("halo", halo)
         return (
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                 <TabComp />
@@ -57,12 +59,12 @@ class DetailPage extends React.Component {
                 <img src={images} style={{ width: '80vw' }} />
                 <div className="my-3" style={{ width: '80vw' }}>
                     <div className="d-flex flex-column">
-                        <span style={{fontFamily: 'helvetica, arial', fontWeight: 'bold', fontSize: '15px', margin: '1%'}}>Penulis: {author}</span>
-                        <span style={{fontFamily: 'helvetica, arial', fontWeight: '500', fontSize: '13px', margin: '1%'}}>{this.state.tanggal}</span>
+                        <span style={{ fontFamily: 'helvetica, arial', fontWeight: 'bold', fontSize: '15px', margin: '1%' }}>Penulis: {author}</span>
+                        <span style={{ fontFamily: 'helvetica, arial', fontWeight: '500', fontSize: '13px', margin: '1%' }}>{this.state.tanggal}</span>
                     </div>
-                    <p className="my-3" style={{fontSize: '20px', fontFamily: 'georgia, times new roman', lineHeight: '30px', textAlign: 'justify'}}>
-                        {`${deskripsi}`}
-                        </p>
+                    <p className="my-3" style={{ fontSize: '20px', fontFamily: 'georgia, times new roman', lineHeight: '30px', textAlign: 'justify' }}>
+                        {deskripsi}
+                    </p>
                 </div>
             </div>
         );

@@ -22,7 +22,7 @@ class CategoryPage extends React.Component {
 
     printCard = () => {
         let dataCard = [...this.props.newsKategori]
-        return dataCard.splice(5, dataCard.length).map((item, index) => {
+        return dataCard.splice(4, dataCard.length).map((item, index) => {
             return (
                 <CardComp data={item} />
             )
@@ -34,10 +34,13 @@ class CategoryPage extends React.Component {
 
         return hasil.splice(0, 4).map((item, index) => {
             return (
-                <div style={{ width: "40%", cursor: 'pointer' }} onClick={() => this.onClickDetail(item.idnews)}>
+                <Link
+                to={`/detail-news?id=${item.idnews}`} 
+                style={{ width: "40%", cursor: 'pointer', color: 'black', textDecoration: 'none' }} 
+                onClick={() => this.props.updateViewAction(item.idnews, item.view)}>
                     <img src={item.images} style={{ width: '100%' }} />
                     <span style={{ fontWeight: 'bold' }}>{item.judul}</span>
-                </div>
+                </Link>
             )
         })
     }
@@ -48,7 +51,7 @@ class CategoryPage extends React.Component {
                 <TabComp />
                 {
                     newsKategori.length > 0 &&
-                    <div className="d-flex justify-content-between p-4 m-auto">
+                    <div className="d-flex justify-content-between p-4 m-auto align-items-center">
                         <div style={{ width: '50%', cursor: 'pointer' }}>
                             <Link style={{ height: '60vh', width: '100%' }} onClick={() => this.props.updateViewAction(newsKategori[0].idnews, newsKategori[0].view)} 
                             to={`/detail-news?id=${newsKategori[0].idnews}`}>
@@ -65,7 +68,7 @@ class CategoryPage extends React.Component {
                         </div>
                     </div>
                 }
-                <div className="my-5">
+                <div style={{marginTop: '5%'}}>
                     <h4>Berita Lainnya dari {this.props.location.pathname.split("/")[2]}</h4>
                     <hr />
                 </div>
