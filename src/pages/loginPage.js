@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import axios from 'axios';
 import { URL_API } from '../helper';
 import { connect } from 'react-redux';
@@ -92,3 +93,18 @@ const mapToProps = ({ authReducer }) => {
 }
 
 export default connect(mapToProps, { authLogin })(LoginPage);
+=======
+
+class LoginPage extends React.Component {
+    state = {  }
+    render() { 
+        return (
+            <>
+                <h1>Test login page redirect</h1>
+            </>
+        );
+    }
+}
+ 
+export default LoginPage;
+>>>>>>> 1f0488ccf9077228bbd96bb135bc2da6a0870e1b
