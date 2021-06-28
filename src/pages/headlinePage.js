@@ -2,9 +2,6 @@ import React from 'react';
 import { InputText } from 'primereact/inputtext'
 import { TabMenu } from 'primereact/tabmenu';
 import { Button } from 'primereact/button';
-<<<<<<< HEAD
-import { Link } from 'react-router-dom';
-=======
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { URL_API } from '../helper'
@@ -14,19 +11,11 @@ import { Carousel } from 'primereact/carousel';
 import { Card } from 'primereact/card';
 import CardComp from '../components/CardComp'
 import TabComp from '../components/TabComp';
->>>>>>> 1f0488ccf9077228bbd96bb135bc2da6a0870e1b
 
 class HeadlinePage extends React.Component {
     constructor(props) {
         super(props);
-<<<<<<< HEAD
         this.state = {  }
-=======
-        this.state = {
-
-        }
-
->>>>>>> 1f0488ccf9077228bbd96bb135bc2da6a0870e1b
         this.menu = [
             { label: 'Home' },
             { label: 'Politik' },
@@ -34,34 +23,6 @@ class HeadlinePage extends React.Component {
             { label: 'Bisnis' },
             { label: 'Olahraga' },
             { label: 'Teknologi' },
-<<<<<<< HEAD
-            { label: 'Global' },
-            { label: 'Ekonomi' }
-        ]
-    }
-
-    onClickKategori = (e) =>{
-        this.setState({ activeIndex: e.index })
-        let kategori = e.value.label
-        console.log("kategori: ",kategori)
-    }
-    render() { 
-        return (
-            <div style={{height:'100vh', width: '100%'}} className="container-fluid">
-                <TabMenu
-                style={{ height: '10%', width: '65vw', margin: 'auto', padding: 'auto' }}
-                model={this.menu}
-                activeIndex={this.state.activeIndex}
-                onTabChange={e => this.onClickKategori(e) }
-            />
-                
-            </div>
-        );
-    }
-}
- 
-export default HeadlinePage;
-=======
             { label: 'Global' }
         ]
     }
@@ -97,6 +58,7 @@ export default HeadlinePage;
 
 
     render() {
+        console.log(this.props.news)
         return (
             <div style={{ height: '100%', width: '100%' }} className="container-fluid">
                 <TabComp />
@@ -122,4 +84,3 @@ const mapStateToProps = ({ NewsReducer }) => {
 }
 
 export default connect(mapStateToProps, { getNewsAction })(HeadlinePage);
->>>>>>> 1f0488ccf9077228bbd96bb135bc2da6a0870e1b

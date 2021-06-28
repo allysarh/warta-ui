@@ -22,6 +22,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.reLogin()
+    this.props.getNewsAction()
   }
 
   reLogin = () => {

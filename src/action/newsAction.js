@@ -5,7 +5,7 @@ export const getNewsAction = () => {
     return async (dispacth) => {
         try {
             let getAllNews = await axios.get(URL_API + `/news/get-news`)
-            // console.log("news action", getAllNews.data)
+            console.log("news action", getAllNews.data)
             dispacth({
                 type: GET_NEWS,
                 payload: getAllNews.data
@@ -39,20 +39,10 @@ export const updateViewAction = (idnews, view) => {
                 idnews, view: view
             })
             console.log(res.data)
+            getNewsAction()
         } catch (error) {
             console.log("error get news action", error)
         }
     }
-    // onClickCard = async () => {
-    //     try {
-    //         let { idnews, view } = this.props.data
-    //         view += 1
-    //         let res = await axios.patch(URL_API + `/news/update-view`, {
-    //             idnews, view: view
-    //         })
-    //         console.log(res.data)
-    //     } catch (error) {
-    //         console.log("error patch click card", error)
-    //     }
-    // }
+    
 }

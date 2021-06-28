@@ -14,6 +14,7 @@ class DetailPage extends React.Component {
     }
 
     componentDidMount() {
+        
         this.getDetailNews()
 
     }
