@@ -26,8 +26,6 @@ class CardComp extends React.Component {
         );
         return (
             <Link to={`/detail-news?id=${idnews}`} style={{ textDecoration: 'none' }} onClick={() => this.props.updateViewAction(idnews, view)}>
-                {/* <Card title={judul} subTitle={`Tanggal: ${date.split("T")[0]}`} style={{ width: '25em', height: '25em', margin: '1%', borderRadius: '30px', padding: '10px', marginTop: '40px' }} header={header}>
-                </Card> */}
                 <div style={
                     {
                         display: 'flex',
