@@ -79,26 +79,26 @@ class RegisterPage extends React.Component {
                 <div className="container">
                     <div className="column">
                         <div style={{ alignItems: 'center' }}>
-                            <h1 className="text-center">Register Page</h1>
+                            <h1 className="text-center" style={{ fontFamily: 'Montserrat', fontWeight: '600', color: 'antiquewhite' }}>Register Page</h1>
                             <Messages ref={(el) => this.toast = el} style={{ width: '30rem', margin: 'auto' }} />
                             <div className="p-field p-fluid mt-5" style={{ width: '30rem', margin: 'auto' }}>
-                                <h6>Username</h6>
+                                <h6 style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '20px', color: 'antiquewhite' }}>Username</h6>
                                 <InputText id="username" type="username" aria-describedby="username-help" value={this.state.username} onChange={(e) => this.setState({ username: e.target.value })} />
                                 <small id="username-help" style={{ float: 'right' }}>Minimum 5 characters</small>
                             </div>
-                            <div className="p-field p-fluid my-3" style={{ width: '30rem', margin: 'auto' }}>
-                                <h6>Email</h6>
+                            <div className="p-field p-fluid my-5" style={{ width: '30rem', margin: 'auto' }}>
+                                <h6 style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '20px', color: 'antiquewhite' }}>Email</h6>
                                 <InputText id="email" type="email" aria-describedby="username-help" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
                             </div>
                             <div className="card my-4" style={{ width: '30rem', background: 'none', margin: 'auto', border: 'none' }}>
-                                <h6>Password</h6>
+                                <h6 style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '20px', color: 'antiquewhite' }}>Password</h6>
                                 <Password value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} header={header} footer={footer} toggleMask />
                             </div>
-                            <div className="card my-4" style={{ width: '30rem', background: 'none', margin: 'auto', border: 'none' }}>
-                                <h6>Confirm Password</h6>
+                            <div className="card my-5" style={{ width: '30rem', background: 'none', margin: 'auto', border: 'none' }}>
+                                <h6 style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '20px', color: 'antiquewhite' }}>Confirm Password</h6>
                                 <Password value2={this.state.confPassword} onChange={(e) => this.setState({ confPassword: e.target.value })} toggleMask />
                             </div>
-                            <div style={{ width: '30rem', margin: 'auto' }}>
+                            <div className="card my-5" style={{ width: '30rem', margin: 'auto', background: 'none' }}>
                                 <Button onClick={this.onBtnRegis} style={{ width: '30rem' }} label="Sign Up" className="p-button-rounded p-button-success" />
                             </div>
                         </div>

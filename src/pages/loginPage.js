@@ -33,7 +33,7 @@ class LoginPage extends React.Component {
                     this.props.authLogin(res.data)
                     localStorage.setItem('tkn_id', res.data.token)
                     // this.setState({ redirect: true })
-                    this.toast.show({ severity: 'success', detail: 'Login Success', life: 3000 })
+                    // this.toast.show({ severity: 'success', detail: 'Login Success', life: 3000 })
                     console.log("Login Success", res.data)
                 } else {
                     this.toast.show({ severity: 'error', detail: 'Account Not Verified, Please Check Your Email !', life: 3000 })
@@ -62,20 +62,23 @@ class LoginPage extends React.Component {
         // if (this.state.redirect) {
         //     return <Redirect to="/" />
         // }
+        if (this.props.id && this.props.idstatus == 1) {
+            return <Redirect to="/" />
+        }
         return (
             <div className="bg-img">
                 <div className="container">
-                    <h1 className="text-center mb-5">Login Page</h1>
+                    <h1 className="text-center mb-5" style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize:'50px', color: 'antiquewhite' }}>Login Page</h1>
                     <Messages ref={(el) => this.toast = el} style={{ width: '30rem', margin: 'auto' }} />
                     <div className="p-field p-fluid my-4" style={{ width: '30rem', margin: 'auto' }}>
-                        <h6>Email</h6>
+                        <h6 style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '20px', color: 'antiquewhite' }}>Email</h6>
                         <InputText id="email" type="email" aria-describedby="username-help" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
                     </div>
                     <div className="card my-4" style={{ width: '30rem', background: 'none', margin: 'auto', border: 'none' }}>
-                        <h6>Password</h6>
+                        <h6 style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '20px', color: 'antiquewhite' }}>Password</h6>
                         <Password value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} toggleMask />
                     </div>
-                    <div style={{ width: '30rem', margin: 'auto' }}>
+                    <div className="card my-5" style={{ width: '30rem', margin: 'auto', background: 'none' }}>
                         <Button onClick={this.onBtnLogin} style={{ width: '30rem' }} label="Sign In" className="p-button-rounded" />
                     </div>
                 </div>

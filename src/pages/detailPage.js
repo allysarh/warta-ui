@@ -3,18 +3,23 @@ import React from 'react';
 import TabComp from '../components/TabComp';
 import { URL_API } from '../helper';
 import { Chip } from 'primereact/chip';
+import { InputTextarea } from 'primereact/inputtextarea';
+import { Button } from 'primereact/button';
+import { connect } from 'react-redux';
+import { Messages } from 'primereact/messages';
 
 class DetailPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             detailNews: {},
-            tanggal: null
+            tanggal: null,
+            komentar: ''
         }
     }
 
     componentDidMount() {
-        
+
         this.getDetailNews()
 
     }
@@ -25,7 +30,7 @@ class DetailPage extends React.Component {
             this.setState({ detailNews: res.data[0] })
             let tanggal = this.state.detailNews.date.split("T")[0]
             this.tanggal(tanggal)
-            
+
         } catch (error) {
             console.log("error get detail news", error)
         }
@@ -37,6 +42,37 @@ class DetailPage extends React.Component {
         let printTanggal = `${output[2]} ${bulan[1]} ${output[0]}`
         this.setState({ tanggal: printTanggal })
     }
+
+    onBtnComment = () => {
+        // console.log("Cek Comment :", this.state.detailNews.idnews)
+        console.log("Cek User :", this.props.idstatus)
+        // let token = localStorage.getItem("tkn_id")
+        // if (token) {
+        //     const headers = {
+        //         headers: {
+        //             "Authorization": `Bearer ${token}`
+        //         }
+        //     }
+        if (this.props.idstatus == 1) {
+            axios.post(URL_API + `/news/add-komentar`, {
+                idnews: this.state.detailNews.idnews,
+                komentar: this.state.komentar
+            })
+                .then(res => {
+                    console.log("Cek Comment :", res.data)
+                    // alert("Success Add Comment ✅")
+                    this.toast.show({ severity: 'success', detail: 'Success Add Comment ✅', life: 3000 })
+                })
+                .catch(err => {
+                    console.log("Error Comment :", err)
+                })
+        } else {
+            console.log("Account Not Verified")
+            this.toast.show({ severity: 'error', detail: 'Account Not Verified, Please Register & Verified Account !', life: 3000 })
+        }
+        // }
+    }
+
     render() {
         let { images, judul, author, view, deskripsi, date, kategori } = this.state.detailNews
         let halo = "halo \n a"
@@ -67,9 +103,26 @@ class DetailPage extends React.Component {
                         {deskripsi}
                     </p>
                 </div>
+                <div style={{ width: '80vw' }}>
+                    <Messages ref={(el) => this.toast = el} />
+                </div>
+                <div className="card" style={{ border: 'none', background: 'none', width: '80vw' }}>
+                    <h6 style={{ fontFamily: 'Montserrat', fontWeight: '600', fontSize: '20px' }}>Comment</h6>
+                    <InputTextarea value={this.state.komentar} onChange={(e) => this.setState({ komentar: e.target.value })} rows={5} cols={30} autoResize />
+                </div>
+                <div className="my-5" style={{ width: '30rem', margin: 'auto' }}>
+                    <Button onClick={this.onBtnComment} style={{ width: '30rem' }} label="Create Comment" className="p-button-rounded" />
+                </div>
             </div>
         );
     }
 }
 
-export default DetailPage;
+const mapToProps = ({ authReducer }) => {
+    return {
+        id: authReducer.iduser,
+        idstatus: authReducer.idstatus
+    }
+}
+
+export default connect(mapToProps)(DetailPage);
