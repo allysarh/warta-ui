@@ -17,8 +17,8 @@ class NavbarComp extends React.Component {
             redirect: false,
             activeIndex: null,
             selectedInput: null,
-            filteredNews: []
-
+            filteredNews: [],
+            searchRedirect: false
         }
 
         this.items = [
@@ -31,6 +31,15 @@ class NavbarComp extends React.Component {
             }
         ]
 
+        this.logoutitems = [
+            {
+                label: `Hello, ${this.props.username}`,
+                items: [
+                    { label: 'Create News', icon: 'pi pi-fw pi-pencil', command: () => this.props.history.push('/add-news') },
+                    { label: 'Logout', icon: 'pi pi-fw pi-sign-in', command: () => this.props.authLogout() }
+                ]
+            }
+        ]
 
     }
 
@@ -46,7 +55,7 @@ class NavbarComp extends React.Component {
             });
         }
         this.setState({ filteredNews });
-        // this.props.filterNewsAction(filteredNews)
+
 
     }
 
@@ -55,7 +64,7 @@ class NavbarComp extends React.Component {
         this.setState({ selectedInput: null })
     }
 
-    handleKeyPress = () => {
+    handleKeyPress = (e) => {
         // console.log(e)
         let { selectedInput } = this.state
         if (selectedInput) {
@@ -66,14 +75,16 @@ class NavbarComp extends React.Component {
                 query = selectedInput
             }
 
-            // if (e.code == "Enter") {
-            //     alert("enter")
-            // }
+            if (e.code == "Enter") {
+                return this.props.history.push(`/search?query=${query}`)
+            }
+        
             this.props.history.push(`/search?query=${query}`)
         }
     }
 
     render() {
+        
         return (
             <div>
                 <div style={{ height: '15vh', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', borderBottom: '1px solid #efefef' }}>
@@ -81,14 +92,15 @@ class NavbarComp extends React.Component {
                         <i className="pi pi-facebook mx-2"></i>
                         <i className="pi pi-twitter mx-2"></i>
                         <i className="pi pi-youtube mx-2"></i>
+                        {/* <span>{Date.now()}</span> */}
                     </div>
-                    <Link style={{ justifyContent: 'center', width: '100%', textDecoration: 'none', color: 'black' }} to="/">
+                    <Link style={{ justifyContent: 'center', width: '100%', textDecoration: 'none', color: 'black', fontFamily: 'times-new-roman' }} to="/">
                         <h2 style={{ textAlign: 'center' }}>Warta.<span style={{ color: 'grey' }}>com</span></h2>
                     </Link>
 
                     <div style={{ width: '40%' }}>
                         <Menubar
-                            model={this.items}
+                            model={this.props.username ? this.logoutitems : this.items}
                             end={
                                 <span className="d-flex align-items-center">
                                     <i className="pi pi-search mx-2" onClick={this.handleKeyPress} />
@@ -98,20 +110,20 @@ class NavbarComp extends React.Component {
                                         completeMethod={this.searchNews}
                                         onChange={(e) => this.setState({ selectedInput: e.value })}
                                         onSelect={(e) => this.onSelectSuggestion(e)}
-                                    // onKeyPress={(e) => this.handleKeyPress(e)}
+                                        // onKeyPress={(e) => this.handleKeyPress(e)}
                                     />
                                 </span>
                             }
                             style={{ border: 'none' }}
                         />
                     </div>
-            </div>
+                </div>
             </div >
         );
     }
 }
 
-const mapStateToProps = ({ authReducer,NewsReducer }) => {
+const mapStateToProps = ({ authReducer, NewsReducer }) => {
     return {
         ...authReducer,
         news: NewsReducer.news_list,

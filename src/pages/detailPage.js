@@ -3,6 +3,12 @@ import React from 'react';
 import TabComp from '../components/TabComp';
 import { URL_API } from '../helper';
 import { Chip } from 'primereact/chip';
+import { connect } from 'react-redux';
+import { getNewsAction } from '../action'
+import { Card } from 'primereact/card';
+import { Avatar } from 'primereact/avatar';
+import { AvatarGroup } from 'primereact/avatargroup';
+import { Badge } from 'primereact/badge';
 
 class DetailPage extends React.Component {
     constructor(props) {
@@ -14,7 +20,7 @@ class DetailPage extends React.Component {
     }
 
     componentDidMount() {
-        
+        this.props.getNewsAction()
         this.getDetailNews()
 
     }
@@ -25,7 +31,7 @@ class DetailPage extends React.Component {
             this.setState({ detailNews: res.data[0] })
             let tanggal = this.state.detailNews.date.split("T")[0]
             this.tanggal(tanggal)
-            
+
         } catch (error) {
             console.log("error get detail news", error)
         }
@@ -43,7 +49,7 @@ class DetailPage extends React.Component {
 
         console.log("halo", halo)
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <div className="container-fluid" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                 <TabComp />
                 <div className="m-5" style={{ width: '70vw' }}>
                     <h1 style={{ fontSize: '40px', fontStyle: 'italic', fontFamily: 'georgia, "times new roman", times, seri' }}>{judul}</h1>
@@ -63,13 +69,32 @@ class DetailPage extends React.Component {
                         <span style={{ fontFamily: 'helvetica, arial', fontWeight: 'bold', fontSize: '15px', margin: '1%' }}>Penulis: {author}</span>
                         <span style={{ fontFamily: 'helvetica, arial', fontWeight: '500', fontSize: '13px', margin: '1%' }}>{this.state.tanggal}</span>
                     </div>
-                    <p className="my-3" style={{ fontSize: '20px', fontFamily: 'georgia, times new roman', lineHeight: '30px', textAlign: 'justify' }}>
+                    <p className="my-3"
+                        style={{ fontSize: '20px', fontFamily: 'georgia, times new roman', lineHeight: '30px', textAlign: 'justify' }}>
                         {deskripsi}
                     </p>
+                    <hr />
+                </div>
+                {/* KOLOM KOMENTAR */}
+                <div className="d-flex flex-column my-3" style={{ width: '80vw', height: '30px', fontFamily: 'georgia, times new roman' }}>
+                    <h4>Komentar</h4>
+                    <Card>
+                        <div className="d-flex align-items-center">
+                            <Avatar icon="pi pi-user" className="p-mr-2" size="large" shape="circle" />
+                            <h6 className="mx-2">Nama User</h6>
+                        </div>
+                        <p>Isi komentarnya apa</p>
+                        <div style={{ float: 'right' }} className="d-flex align-items-center">
+                            <i className="pi pi-thumbs-up mx-2"></i>
+                            <Badge value="2"></Badge>
+                            <i className="pi pi-thumbs-down mx-2"></i>
+                            <Badge value="2"></Badge>
+                        </div>
+                    </Card>
                 </div>
             </div>
         );
     }
 }
 
-export default DetailPage;
+export default connect(null, { getNewsAction })(DetailPage);

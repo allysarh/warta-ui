@@ -11,6 +11,7 @@ import { Carousel } from 'primereact/carousel';
 import { Card } from 'primereact/card';
 import CardComp from '../components/CardComp'
 import TabComp from '../components/TabComp';
+import StockComp from '../components/StockComp';
 
 class HeadlinePage extends React.Component {
     constructor(props) {
@@ -65,7 +66,8 @@ class HeadlinePage extends React.Component {
                 <div className="mt-3">
                     <Carousel value={this.props.news} circular={true} numVisible={1} numScroll={1} autoplayInterval={3000} itemTemplate={this.printImages} />
                 </div>
-                <div className="m-3 d-flex justify-content-around flex-wrap">
+                <StockComp />
+                <div className=" d-flex justify-content-around flex-wrap">
                     {this.printCard()}
                 </div>
 
