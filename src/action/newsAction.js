@@ -40,6 +40,8 @@ export const updateViewAction = (idnews, view) => {
             })
             console.log(res.data)
             getNewsAction()
+            getNewsAction()
+            getNewsAction()
         } catch (error) {
             console.log("error get news action", error)
         }

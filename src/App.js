@@ -13,6 +13,7 @@ import { keepLogin, getNewsAction } from './action'
 import axios from 'axios';
 import { URL_API } from './helper';
 import { connect } from 'react-redux';
+import FooterComp from './components/FooterComp';
 
 class App extends React.Component {
   constructor(props) {
@@ -60,6 +61,7 @@ class App extends React.Component {
           <Route path={`/kategori`} component={CategoryPage} />
           <Route path={`/detail-news`} component={DetailPage} />
         </Switch>
+        <FooterComp />
       </>
     );
   }
