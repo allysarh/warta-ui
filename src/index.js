@@ -14,7 +14,7 @@ import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'primereact/resources/themes/fluent-light/theme.css'
-
+// import 'react-open-weather/lib/css/ReactWeather.css';
 
 const globalStore = createStore(Reducers, {}, composeWithDevTools(applyMiddleware(ReduxThunk)))
 

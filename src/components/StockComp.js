@@ -13,25 +13,25 @@ class StockComp extends React.Component {
     }
 
     componentDidMount() {
-        this.getStockData()
+        // this.getStockData()
     }
 
-    getStockData = async () => {
-        try {
-            let res
-            let data = []
-            let options = `TSLA,PG,AAL,AAPLM,NVDA,GOOGL,UL,SLB,PFE,MSFT`
-            res = await axios.get(`https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-spark?symbols=TSLA,PG,AAL,AAPLM,NVDA,GOOGL,UL,SLB,PFE,MSFT&interval=1m&range=1d`, {
-                headers: {
-                    'x-rapidapi-key': '38dd82fc8fmsh54c84491efc066ep118323jsn94680a4ae595',
-                    'x-rapidapi-host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
-                }
-            })
-            console.log("respon data: ", res.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    // getStockData = async () => {
+    //     try {
+    //         let res
+    //         let data = []
+    //         let options = `TSLA,PG,AAL,AAPLM,NVDA,GOOGL,UL,SLB,PFE,MSFT`
+    //         res = await axios.get(`https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-spark?symbols=TSLA,PG,AAL,AAPLM,NVDA,GOOGL,UL,SLB,PFE,MSFT&interval=1m&range=1d`, {
+    //             headers: {
+    //                 'x-rapidapi-key': '38dd82fc8fmsh54c84491efc066ep118323jsn94680a4ae595',
+    //                 'x-rapidapi-host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
+    //             }
+    //         })
+    //         console.log("respon data: ", res.data)
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
     render() {
 

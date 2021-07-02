@@ -19,13 +19,15 @@ class DetailPage extends React.Component {
         this.state = {
             detailNews: {},
             tanggal: null,
-            komentar: ''
+            komentar: '',
+            dataKomentar: []
         }
     }
 
     componentDidMount() {
         this.props.getNewsAction()
         this.getDetailNews()
+        this.getKomentar()
 
     }
     getDetailNews = async () => {
@@ -61,12 +63,14 @@ class DetailPage extends React.Component {
         if (this.props.idstatus == 1) {
             axios.post(URL_API + `/news/add-komentar`, {
                 idnews: this.state.detailNews.idnews,
-                komentar: this.state.komentar
+                komentar: this.state.komentar,
+                iduser: this.props.id
             })
                 .then(res => {
                     console.log("Cek Comment :", res.data)
                     // alert("Success Add Comment ✅")
                     this.toast.show({ severity: 'success', detail: 'Success Add Comment ✅', life: 3000 })
+                    this.getKomentar()
                 })
                 .catch(err => {
                     console.log("Error Comment :", err)
@@ -78,6 +82,39 @@ class DetailPage extends React.Component {
         // }
     }
 
+    getKomentar = async () => {
+        try {
+            let idNews = this.props.location.search.split("=")[1]
+            let komentar = await axios.get(URL_API + `/news/get-komentar?idnews=${idNews}`)
+            console.log("komentar", komentar.data)
+            this.setState({ dataKomentar: komentar.data })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    printKomentar = () => {
+        console.log(this.state.komentar)
+        return this.state.dataKomentar.map((item, index) => {
+            return (
+                <div className="card" style={{ border: 'none', background: 'none', width: '80vw', margin: '1%' }}>
+                    <Card>
+                        <div className="d-flex align-items-center">
+                            <Avatar icon="pi pi-user" className="p-mr-2" size="large" shape="circle" />
+                            <h6 className="mx-2">{item.username}</h6>
+                        </div>
+                        <p>{item.komentar}</p>
+                        <div style={{ float: 'right' }} className="d-flex align-items-center">
+                            <i className="pi pi-thumbs-up mx-2"></i>
+                            <Badge value="2"></Badge>
+                            <i className="pi pi-thumbs-down mx-2"></i>
+                            <Badge value="2"></Badge>
+                        </div>
+                    </Card>
+                </div>
+            )
+        })
+    }
     render() {
         let { images, judul, author, view, deskripsi, date, kategori } = this.state.detailNews
         let halo = "halo \n a"
@@ -112,20 +149,9 @@ class DetailPage extends React.Component {
                 </div>
 
                 {/* KOLOM KOMENTAR */}
-                <div className="card" style={{ border: 'none', background: 'none', width: '80vw' }}>
-                    <Card>
-                        <div className="d-flex align-items-center">
-                            <Avatar icon="pi pi-user" className="p-mr-2" size="large" shape="circle" />
-                            <h6 className="mx-2">Nama User</h6>
-                        </div>
-                        <p>Isi komentarnya apa</p>
-                        <div style={{ float: 'right' }} className="d-flex align-items-center">
-                            <i className="pi pi-thumbs-up mx-2"></i>
-                            <Badge value="2"></Badge>
-                            <i className="pi pi-thumbs-down mx-2"></i>
-                            <Badge value="2"></Badge>
-                        </div>
-                    </Card>
+                <div>
+                    <h5>Komentar :</h5>
+                    {this.printKomentar()}
                 </div>
                 <div style={{ width: '80vw' }}>
                     <Messages ref={(el) => this.toast = el} />

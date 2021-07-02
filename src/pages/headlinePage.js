@@ -13,6 +13,9 @@ import CardComp from '../components/CardComp'
 import TabComp from '../components/TabComp';
 import StockComp from '../components/StockComp';
 import { TickerTape, Timeline } from 'react-tradingview-embed';
+import ReactWeather from 'react-open-weather';
+import WeatherComp from '../components/WeatherComp';
+
 
 class HeadlinePage extends React.Component {
     constructor(props) {
@@ -98,13 +101,14 @@ class HeadlinePage extends React.Component {
                         {this.printCard()}
                     </div>
                     <div style={{ width: '35%' }}>
-                        <div style={{ border: '1px solid #eaeae8', padding: '5%', marginTop: '30px' }}>
+                        <div style={{ border: '1px solid #eaeae8', padding: '5%', marginTop: '30px', marginBottom: '20px' }}>
                             <span style={{ fontSize: '10px' }}>Berita yang paling banyak dilihat</span>
                             <h3>#Trending : </h3>
                             {
                                 this.printDataTrending()
                             }
                         </div>
+                        <WeatherComp />
                         <StockComp />
                         <div className="my-3">
                             <h4>Update Bisnis Global</h4>
