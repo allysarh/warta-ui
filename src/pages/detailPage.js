@@ -102,7 +102,7 @@ class DetailPage extends React.Component {
                     <Card>
                         <div className="d-flex align-items-center">
                             <Avatar icon="pi pi-user" className="p-mr-2" size="large" shape="circle" />
-                            <h6 className="mx-2">{item.username}</h6>
+                            <h6 className="mx-2">{item.username ? item.username : 'Anonymous'}</h6>
                         </div>
                         <p>{item.komentar}</p>
                         <div style={{ float: 'right' }} className="d-flex align-items-center">
