@@ -32,15 +32,9 @@ class NavbarComp extends React.Component {
         ]
 
         this.logoutitems = [
-            {
-                label: `Hello, ${this.props.username}`,
-                items: [
-                    { label: 'Create News', icon: 'pi pi-fw pi-pencil', command: () => this.props.history.push('/add-news') },
-                    { label: 'Logout', icon: 'pi pi-fw pi-sign-in', command: () => this.props.authLogout() }
-                ]
-            }
+            { label: 'Create News', icon: 'pi pi-fw pi-pencil', command: () => this.props.history.push('/add-news') },
+            { label: 'Logout', icon: 'pi pi-fw pi-sign-in', command: () => this.props.authLogout() }
         ]
-
     }
 
     searchNews = (e) => {
@@ -78,13 +72,13 @@ class NavbarComp extends React.Component {
             if (e.code == "Enter") {
                 return this.props.history.push(`/search?query=${query}`)
             }
-        
+
             this.props.history.push(`/search?query=${query}`)
         }
     }
 
     render() {
-        
+
         return (
             <div>
                 <div style={{ height: '15vh', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', borderBottom: '1px solid #efefef' }}>
@@ -100,7 +94,14 @@ class NavbarComp extends React.Component {
 
                     <div style={{ width: '40%' }}>
                         <Menubar
-                            model={this.props.username ? this.logoutitems : this.items}
+                            model={this.props.username ?
+                                [
+                                    {
+                                        label: `Hello, ${this.props.username}`,
+                                        items: this.logoutitems
+                                    }
+                                ]
+                                : this.items}
                             end={
                                 <span className="d-flex align-items-center">
                                     <i className="pi pi-search mx-2" onClick={this.handleKeyPress} />
@@ -110,7 +111,7 @@ class NavbarComp extends React.Component {
                                         completeMethod={this.searchNews}
                                         onChange={(e) => this.setState({ selectedInput: e.value })}
                                         onSelect={(e) => this.onSelectSuggestion(e)}
-                                        // onKeyPress={(e) => this.handleKeyPress(e)}
+                                    // onKeyPress={(e) => this.handleKeyPress(e)}
                                     />
                                 </span>
                             }

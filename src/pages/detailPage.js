@@ -94,7 +94,7 @@ class DetailPage extends React.Component {
     }
 
     printKomentar = () => {
-        console.log(this.state.komentar)
+        console.log("username:",this.state.dataKomentar)
         return this.state.dataKomentar.map((item, index) => {
             return (
                 <div className="card" style={{ border: 'none', background: 'none', width: '80vw', margin: '1%' }}>
