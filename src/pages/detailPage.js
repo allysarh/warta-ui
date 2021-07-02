@@ -26,6 +26,7 @@ class DetailPage extends React.Component {
 
     componentDidMount() {
         this.props.getNewsAction()
+        this.props.getNewsAction()
         this.getDetailNews()
         this.getKomentar()
 
@@ -122,7 +123,9 @@ class DetailPage extends React.Component {
         console.log("halo", halo)
         return (
             <div className="container-fluid" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                <TabComp />
+                <div className="row m-auto p-auto" style={{ height: '50px' }}>
+                    <TabComp />
+                </div>
                 <div className="m-5" style={{ width: '70vw' }}>
                     <h1 style={{ fontSize: '40px', fontStyle: 'italic', fontFamily: 'georgia, "times new roman", times, seri' }}>{judul}</h1>
                     <hr />

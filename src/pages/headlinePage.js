@@ -15,6 +15,7 @@ import StockComp from '../components/StockComp';
 import { TickerTape, Timeline } from 'react-tradingview-embed';
 import ReactWeather from 'react-open-weather';
 import WeatherComp from '../components/WeatherComp';
+import { Tag } from 'primereact/tag';
 
 
 class HeadlinePage extends React.Component {
@@ -37,16 +38,12 @@ class HeadlinePage extends React.Component {
 
     printImages = (news) => {
         return (
-            <div>
-                <div style={{ width: '100%', height: '70vh', overflow: 'hidden', objectFit: 'cover', position: 'relative', zIndex: 1, top: 0 }}>
-                    <img src={news.images} style={{ width: '100%', filter: 'grayscale(50%)' }} />
-                </div>
-                <div style={{ position: 'absolute', top: '270px', zIndex: 2, width: '100%', marginLeft: '4%' }}>
-                    <Card style={{ width: '40%', backgroundColor: '#e8ecef', height: 'auto' }}>
-                        <h4>{news.judul}</h4>
-                        <Button label="Baca Lebih" className="mt-1 p-button-rounded" icon="pi pi-arrow-right" style={{ float: 'right' }} />
-                    </Card>
-                </div>
+            <div style={{ height: '300px' }}>
+                <img src={news.images} style={{ width: '100%', filter: 'grayscale(50%)', height: '300px' }} />
+                <Card style={{ position: 'relative', left: '5%', bottom: '150px', width: '90%', backgroundColor: '#e8ecef' }}>
+                    <Tag className="p-mr-2" value={news.kategori} rounded></Tag>
+                    <h6>{news.judul}</h6>
+                </Card>
             </div>
         )
     }
@@ -84,38 +81,43 @@ class HeadlinePage extends React.Component {
     render() {
         console.log(this.props.news)
         return (
-            <div style={{ height: '100%', width: '100%' }} className="container-fluid">
-                <TabComp />
+            <div style={{ height: '100%', width: '100%' }} className="row container-fluid">
+                <div className="row m-auto p-auto" style={{ height: '50px' }}>
+                    <TabComp />
+                </div>
                 <div className="my-3">
                     <TickerTape widgetProps={{ colorTheme: 'light' }} />
                 </div>
-                <div className="mt-3">
+                <div className="mt-3" style={{ width: '100%' }}>
                     <Carousel value={this.props.news} circular={true} numVisible={1} numScroll={1} autoplayInterval={3000} itemTemplate={this.printImages} />
                 </div>
                 <div className="px-4" style={{ fontFamily: 'times-new-roman', fontStyle: 'italic', fontWeight: 'bolder' }}>
                     <h3>Rangkuman Berita untuk {this.props.username ? this.props.username : "Anda"} Hari Ini</h3>
                     <hr />
                 </div>
-                <div className="d-flex justify-content-around">
-                    <div className=" d-flex justify-content-around flex-wrap" style={{ width: '60%' }}>
+                <div className="d-flex row">
+                    <div className="col-12 col-sm-8 col-md-8 col-lg-8 m-sm-auto d-flex justify-content-around flex-wrap">
                         {this.printCard()}
                     </div>
-                    <div style={{ width: '35%' }}>
-                        <div style={{ border: '1px solid #eaeae8', padding: '5%', marginTop: '30px', marginBottom: '20px' }}>
-                            <span style={{ fontSize: '10px' }}>Berita yang paling banyak dilihat</span>
-                            <h3>#Trending : </h3>
-                            {
-                                this.printDataTrending()
-                            }
-                        </div>
-                        <WeatherComp />
-                        <StockComp />
-                        <div className="my-3">
-                            <h4>Update Bisnis Global</h4>
-                            <hr />
-                            <Timeline widgetProps={{ colorTheme: 'light' }} />
+                    <div className="col-12 col-sm-4 col-md-4 col-lg-4">
+                        <div style={{ width: '100%' }}>
+                            <div style={{ border: '1px solid #eaeae8', padding: '5%', marginTop: '30px', marginBottom: '20px' }}>
+                                <span style={{ fontSize: '10px' }}>Berita yang paling banyak dilihat</span>
+                                <h3>#Trending : </h3>
+                                {
+                                    this.printDataTrending()
+                                }
+                            </div>
+                            <WeatherComp />
+                            <StockComp />
+                            <div className="my-3" style={{width: '100%'}}>
+                                <h4>Update Bisnis Global</h4>
+                                <hr />
+                                <Timeline widgetProps={{ colorTheme: 'light', width: '100%' }}/>
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>

@@ -37,7 +37,7 @@ class CardComp extends React.Component {
                         backgroundColor: 'white',
                         textDecoration: 'none',
                         color: 'black',
-                        width: '25em',
+                        width: '22em',
                         height: '10em',
                         boxShadow: '2px 2px 2px #c7c6c4',
                         border: '1px solid #c7c6c4'
