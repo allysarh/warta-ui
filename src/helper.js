@@ -1,5 +1,5 @@
 // API
-export const URL_API = "http://139.162.63.45:8022"
+export const URL_API = "http://purwadhikafs3.com:8022"
 
 // Action dan Reducer TYPE
 export const GET_NEWS = "GET_NEWS"
