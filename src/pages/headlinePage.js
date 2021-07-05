@@ -91,15 +91,12 @@ class HeadlinePage extends React.Component {
                 <div className="mt-3" style={{ width: '100%' }}>
                     <Carousel value={this.props.news} circular={true} numVisible={1} numScroll={1} autoplayInterval={3000} itemTemplate={this.printImages} />
                 </div>
-                <div className="px-4" style={{ fontFamily: 'times-new-roman', fontStyle: 'italic', fontWeight: 'bolder' }}>
+                {/* <div className="px-4" style={{ fontFamily: 'times-new-roman', fontStyle: 'italic', fontWeight: 'bolder' }}>
                     <h3>Rangkuman Berita untuk {this.props.username ? this.props.username : "Anda"} Hari Ini</h3>
                     <hr />
-                </div>
-                <div className="d-flex row">
-                    <div className="col-12 col-sm-8 col-md-8 col-lg-8 m-sm-auto d-flex justify-content-around flex-wrap">
-                        {this.printCard()}
-                    </div>
-                    <div className="col-12 col-sm-4 col-md-4 col-lg-4">
+                </div> */}
+                <div className="row">
+                    <div className="col-12 order-1 order-md-2 col-md-4">
                         <div style={{ width: '100%' }}>
                             <div style={{ border: '1px solid #eaeae8', padding: '5%', marginTop: '30px', marginBottom: '20px' }}>
                                 <span style={{ fontSize: '10px' }}>Berita yang paling banyak dilihat</span>
@@ -108,13 +105,26 @@ class HeadlinePage extends React.Component {
                                     this.printDataTrending()
                                 }
                             </div>
-                            <WeatherComp />
-                            <StockComp />
-                            <div className="my-3" style={{width: '100%'}}>
+                            <div className="d-none d-md-block">
+                                <WeatherComp />
+                            </div>
+                            <div className="d-none d-md-block">
+                                <StockComp />
+                            </div>
+                            <div className="my-3" style={{ width: '100%' }}>
                                 <h4>Update Bisnis Global</h4>
                                 <hr />
-                                <Timeline widgetProps={{ colorTheme: 'light', width: '100%' }}/>
+                                <Timeline widgetProps={{ colorTheme: 'light', width: '100%' }} />
                             </div>
+                        </div>
+                    </div>
+                    <div className="col-12 order-2 order-md-1 col-md-8">
+                        <div style={{ fontFamily: 'times-new-roman', fontStyle: 'italic', fontWeight: 'bolder' }}>
+                            <h3>Rangkuman Berita untuk {this.props.username ? this.props.username : "Anda"} Hari Ini</h3>
+                            <hr />
+                        </div>
+                        <div className="d-flex justify-content-around flex-wrap">
+                            {this.printCard()}
                         </div>
                     </div>
 
