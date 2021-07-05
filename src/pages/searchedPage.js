@@ -65,7 +65,9 @@ class SearchedPage extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <TabComp />
+                <div className="row m-auto p-auto" style={{ height: '50px' }}>
+                    <TabComp />
+                </div>
                 <div className="my-3 d-flex alignt-items-center">
                     <span className="mx-2">Menampilkan {this.state.queryNews.length} hasil untuk:  </span>
                     <h4>{`"${this.state.query}"`}</h4>

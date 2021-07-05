@@ -26,6 +26,7 @@ class DetailPage extends React.Component {
 
     componentDidMount() {
         this.props.getNewsAction()
+        this.props.getNewsAction()
         this.getDetailNews()
         this.getKomentar()
 
@@ -94,14 +95,14 @@ class DetailPage extends React.Component {
     }
 
     printKomentar = () => {
-        console.log(this.state.komentar)
+        console.log("username:",this.state.dataKomentar)
         return this.state.dataKomentar.map((item, index) => {
             return (
                 <div className="card" style={{ border: 'none', background: 'none', width: '80vw', margin: '1%' }}>
                     <Card>
                         <div className="d-flex align-items-center">
                             <Avatar icon="pi pi-user" className="p-mr-2" size="large" shape="circle" />
-                            <h6 className="mx-2">{item.username}</h6>
+                            <h6 className="mx-2">{item.username ? item.username : 'Anonymous'}</h6>
                         </div>
                         <p>{item.komentar}</p>
                         <div style={{ float: 'right' }} className="d-flex align-items-center">
@@ -122,7 +123,9 @@ class DetailPage extends React.Component {
         console.log("halo", halo)
         return (
             <div className="container-fluid" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                <TabComp />
+                <div className="row m-auto p-auto" style={{ height: '50px' }}>
+                    <TabComp />
+                </div>
                 <div className="m-5" style={{ width: '70vw' }}>
                     <h1 style={{ fontSize: '40px', fontStyle: 'italic', fontFamily: 'georgia, "times new roman", times, seri' }}>{judul}</h1>
                     <hr />

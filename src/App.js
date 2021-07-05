@@ -14,6 +14,7 @@ import axios from 'axios';
 import { URL_API } from './helper';
 import { connect } from 'react-redux';
 import FooterComp from './components/FooterComp';
+import './App.css'
 
 class App extends React.Component {
   constructor(props) {

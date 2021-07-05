@@ -37,15 +37,13 @@ class TabComp extends React.Component {
     render() {
         let index = this.menu.findIndex(item => item.label === this.props.location.pathname.split("/")[2])
         return (
-            <>
                 <TabMenu
-                    style={{ height: '50px', width: '50vw', margin: 'auto', padding: 'auto' }}
+                    style={{ height: '100%', width: 'auto', margin: 'auto', padding: 'auto' }}
                     model={this.menu}
                     activeIndex={index != -1 ? index : 0}
                     onTabChange={e => this.onClickKategori(e)}
                 />
 
-            </>
         );
     }
 }
