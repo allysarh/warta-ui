@@ -7,10 +7,14 @@ import LoginPage from './pages/loginPage';
 import RegisterPage from './pages/register';
 import VerificationPage from './pages/verificationPage';
 import NewsPage from './pages/newsPage';
-import { keepLogin } from './action/authAction'
+import CategoryPage from './pages/categoryPage';
+import DetailPage from './pages/detailPage';
+import { keepLogin, getNewsAction } from './action'
 import axios from 'axios';
 import { URL_API } from './helper';
 import { connect } from 'react-redux';
+import FooterComp from './components/FooterComp';
+import './App.css'
 
 class App extends React.Component {
   constructor(props) {
@@ -20,6 +24,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.reLogin()
+    this.props.getNewsAction()
   }
 
   reLogin = () => {
@@ -41,6 +46,7 @@ class App extends React.Component {
     }
   }
 
+
   render() {
     return (
       <>
@@ -49,20 +55,25 @@ class App extends React.Component {
           <Route path="/" component={HeadlinePage} exact />
           <Route path="/register" component={RegisterPage} />
           <Route path="/kategori-page" component={HeadlinePage} />
-          {/* <Route path="/search" component={SearchedPage} /> */}
           <Route path="/login" component={LoginPage} />
           <Route path="/verification" component={VerificationPage} />
           <Route path="/add-news" component={NewsPage} />
+          <Route path="/search" component={SearchedPage} />
+          <Route path={`/kategori`} component={CategoryPage} />
+          <Route path={`/detail-news`} component={DetailPage} />
         </Switch>
+        <FooterComp />
       </>
     );
   }
 }
 
-const mapStateToProps = ({ authReducer }) => {
+const mapStateToProps = ({ authReducer, NewsReducer }) => {
   return {
-    role: authReducer.role
+    role: authReducer.role,
+    news: NewsReducer.news_list,
+    kategori: NewsReducer.kategori
   }
 }
 
-export default connect(mapStateToProps, { keepLogin })(App);
+export default connect(mapStateToProps, { keepLogin, getNewsAction })(App);

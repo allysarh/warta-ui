@@ -13,9 +13,12 @@ code {
     monospace;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
 .p-password input {
   width: 30rem;
 }
+
 .bg-img {
   width: 100%;
   height: 88vh;
@@ -24,10 +27,31 @@ code {
 }
 
 .bg-img::after {
-  background-image: url(https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iakrd_gRdPCg/v0/-1x-1.jpg);
+  background-image: url(https://i.pinimg.com/originals/3d/08/e0/3d08e03cb40252526fee2036a67f07f1.gif);
   width: 100%;
   height: 88vh;
-  opacity: 0.5;
+  opacity: 1;
+  z-index: -1;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+.add-img {
+  width: 100%;
+  /* height: 88vh; */
+  display: block;
+  position: relative;
+}
+
+.add-img::after {
+  background-image: url(https://i.pinimg.com/originals/3d/08/e0/3d08e03cb40252526fee2036a67f07f1.gif);
+  width: 100%;
+  height: 115%;
+  opacity: 1;
   z-index: -1;
   content: "";
   top: 0;
