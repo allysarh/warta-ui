@@ -16,10 +16,6 @@ Project ini merupakan hasil implementasi dari semua materi yang telah dipelajari
 ### News Detail
 !["newsDetail"](documentation/NewsDetail.png)
 
-### User : Delivery Status
-!["userside"](documentation/images/users/status%20page.png)
-!["userside"](documentation/images/users/detail%20page.png)
-
 ### Library Used (Front End)
 - [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/) for layouting and make component.
 - [Primereact](https://www.primefaces.org/primereact/) for layouting and make some component.
